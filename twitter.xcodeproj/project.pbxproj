@@ -19,6 +19,7 @@
 		6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD2790820BCC04D0085BC29 /* TimelineViewController.m */; };
 		DCA5138D24AA817B009CD681 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5138C24AA817B009CD681 /* User.m */; };
 		DCA5139024AA8243009CD681 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5138F24AA8243009CD681 /* Tweet.m */; };
+		DCCBB18524AA8F0E009AF342 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCBB18424AA8F0E009AF342 /* TweetCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		DCA5138C24AA817B009CD681 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DCA5138E24AA8243009CD681 /* Tweet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		DCA5138F24AA8243009CD681 /* Tweet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		DCCBB18324AA8F0E009AF342 /* TweetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		DCCBB18424AA8F0E009AF342 /* TweetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 		6AD278FF20BCBF280085BC29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DCCBB18324AA8F0E009AF342 /* TweetCell.h */,
+				DCCBB18424AA8F0E009AF342 /* TweetCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -135,8 +140,8 @@
 		6AD2790320BCC01B0085BC29 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6AD2790420BCC0380085BC29 /* LoginViewController.h */,
 				6AD2790520BCC0380085BC29 /* LoginViewController.m */,
+				6AD2790420BCC0380085BC29 /* LoginViewController.h */,
 				6AD2790720BCC04D0085BC29 /* TimelineViewController.h */,
 				6AD2790820BCC04D0085BC29 /* TimelineViewController.m */,
 			);
@@ -244,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCCBB18524AA8F0E009AF342 /* TweetCell.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				DCA5138D24AA817B009CD681 /* User.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
