@@ -10,7 +10,7 @@
 #import "APIManager.h"
 #import "TweetCell.h"
 #import "Tweet.h"
-#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate>;
 
@@ -68,6 +68,12 @@
     tweetCell.dateLabel.text=ctweet.createdAtString;
     tweetCell.likeCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.favoriteCount ];
     tweetCell.retweetCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.retweetCount ];
+    NSURL *pfImageURL = [NSURL URLWithString:ctweet.user.profileImageURL];
+    tweetCell.profileImageView.image= nil;
+    
+    [tweetCell.profileImageView setImageWithURL:pfImageURL];
+
+
     return tweetCell;
 }
 
