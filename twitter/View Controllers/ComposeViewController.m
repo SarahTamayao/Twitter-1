@@ -22,10 +22,9 @@
 }
 - (IBAction)sendTweet:(id)sender {
     [[APIManager shared] postStatusWithText:self.tweetTextView.text completion:^(Tweet *senttweet, NSError * error) {
-        
         if (senttweet) {
             NSLog(@"Successfully posted the tweet");
-            
+            [self.delegate didTweet:senttweet];
         } else {
             NSLog(@"😫😫😫 Error posting tweet: %@", error.localizedDescription);
         }
