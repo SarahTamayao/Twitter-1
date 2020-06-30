@@ -38,7 +38,7 @@
                 NSLog(@"%@", text);
             }*/
         self.tweets=[tweets mutableCopy];
-            [self.tableView reloadData];
+        [self.tableView reloadData];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
