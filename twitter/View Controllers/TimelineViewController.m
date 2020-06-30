@@ -90,7 +90,7 @@
     tweetCell.nameLabel.text=ctweet.user.name;
     
     tweetCell.tweetContentLabel.text= ctweet.text;
-    tweetCell.dateLabel.text=ctweet.createdAtString;
+    tweetCell.dateLabel.text=ctweet.timeAgo;
     tweetCell.likeCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.favoriteCount ];
     tweetCell.retweetCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.retweetCount ];
     tweetCell.replyCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.replyCount];
