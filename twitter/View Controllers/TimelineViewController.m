@@ -15,9 +15,6 @@
 
 @interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>;
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property(strong, nonatomic) NSMutableArray *tweets;
-
 @end
 
 @implementation TimelineViewController
@@ -86,6 +83,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *tweetCell= [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];//use the cell that we created
     Tweet *ctweet= self.tweets[indexPath.row];
+    tweetCell.tweet=ctweet;
     tweetCell.screenNameLabel.text = [@"@" stringByAppendingString:ctweet.user.screenName];
     tweetCell.nameLabel.text=ctweet.user.name;
     

@@ -107,14 +107,6 @@
                                                     <rect key="frame" x="7" y="0.0" width="35" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="retweet-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-9q-Vna">
-                                                    <rect key="frame" x="103" y="0.0" width="35" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="favor-icon" translatesAutoresizingMaskIntoConstraints="NO" id="1eU-ax-5QM">
-                                                    <rect key="frame" x="215" y="0.0" width="35" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="message-icon" translatesAutoresizingMaskIntoConstraints="NO" id="gjg-Xc-Og4">
                                                     <rect key="frame" x="333" y="0.0" width="35" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -140,6 +132,23 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yww-dO-kXL">
+                                                    <rect key="frame" x="104" y="-1" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="JlA-4l-qRF" eventType="touchUpInside" id="2Eg-qy-sbI"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-xi-6uP">
+                                                    <rect key="frame" x="217" y="-3" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="favor-icon"/>
+                                                    <state key="selected" image="favor-icon-red"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="JlA-4l-qRF" eventType="touchUpInside" id="qHd-9j-LrV"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
@@ -169,10 +178,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="McV-ez-HuN" id="OLO-Wd-6nE"/>
+                                    <outlet property="likeButton" destination="Mr4-xi-6uP" id="DNi-O6-Mbl"/>
                                     <outlet property="likeCountLabel" destination="ECE-Sk-pOo" id="gjC-Yf-HsA"/>
                                     <outlet property="nameLabel" destination="I0W-fb-lyt" id="phq-g9-6xM"/>
                                     <outlet property="profileImageView" destination="9Or-5O-zI2" id="7kt-2s-K2k"/>
                                     <outlet property="replyCountLabel" destination="sAu-tj-aBI" id="AHz-rX-Ay3"/>
+                                    <outlet property="retweetButton" destination="Yww-dO-kXL" id="ZM1-XJ-sb4"/>
                                     <outlet property="retweetCountLabel" destination="3ak-rZ-BL1" id="2v6-b3-Wyf"/>
                                     <outlet property="screenNameLabel" destination="eRm-X2-GYA" id="iRL-eY-L1Y"/>
                                     <outlet property="tweetContentLabel" destination="DsC-oa-GKa" id="pGJ-7a-PGW"/>
@@ -278,6 +289,7 @@
     <resources>
         <image name="TwitterLogoBlue" width="200" height="200"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="favor-icon-red" width="30" height="30"/>
         <image name="message-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
