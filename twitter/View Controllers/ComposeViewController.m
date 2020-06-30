@@ -7,6 +7,7 @@
 //
 
 #import "ComposeViewController.h"
+#import "APIManager.h"
 
 @interface ComposeViewController ()
 
@@ -17,9 +18,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.tweetTextView setClearsOnInsertion:YES];
 }
 - (IBAction)sendTweet:(id)sender {
+    [[APIManager shared] postStatusWithText:self.tweetTextView.text completion:^(Tweet *senttweet, NSError * error) {
+        
+        if (senttweet) {
+            NSLog(@"Successfully posted the tweet");
+            
+        } else {
+            NSLog(@"😫😫😫 Error posting tweet: %@", error.localizedDescription);
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
+
+
 - (IBAction)closeTweet:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     
