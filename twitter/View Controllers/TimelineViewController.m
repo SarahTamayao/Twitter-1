@@ -12,6 +12,8 @@
 #import "Tweet.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>;
 
@@ -109,6 +111,17 @@
 - (void)didTweet:(Tweet *)tweet{
     [self.tweets insertObject:tweet atIndex:0];//insert at the fromt of the array (newest)
     [self.tableView reloadData];
+}
+- (IBAction)tapLogout:(id)sender {
+    AppDelegate *appDelegate= (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UIStoryboard *storyBoard= [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginVC= [storyBoard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginVC;
+    NSLog(@"Here in logout");
+   if( [[APIManager shared] logout])//clear access token
+   {
+       NSLog(@"Success logout");
+   }
 }
 
 @end

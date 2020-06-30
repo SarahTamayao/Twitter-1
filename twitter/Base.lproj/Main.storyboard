@@ -193,6 +193,19 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Home Timeline" id="MOc-fV-EZE">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" style="plain" id="oww-ey-OUP">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sq5-jx-XhS">
+                                <rect key="frame" x="16" y="13" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="tapLogout:" destination="Lbl-k5-U4i" eventType="touchUpInside" id="WHe-02-SBg"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="tapLogout:" destination="Lbl-k5-U4i" id="Aha-72-rgN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="lHQ-Gr-Spa">
                             <connections>
                                 <segue destination="09Q-0Z-xmb" kind="presentation" id="eEG-Gk-id1"/>
