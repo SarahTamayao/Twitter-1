@@ -25,7 +25,9 @@
     [super viewDidLoad];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
-    
+    UIRefreshControl *refreshControl= [[UIRefreshControl alloc] init];//initialize the refresh control
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];//add an event listener
+    [self.tableView insertSubview:refreshControl atIndex:0];//add into the storyboard
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -48,6 +50,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            NSLog(@"Successfully reloaded home timeline");
+            /*
+            for (NSDictionary *dictionary in tweets) {
+                NSString *text = dictionary[@"text"];
+                NSLog(@"%@", text);
+            }*/
+        self.tweets=[tweets mutableCopy];
+        [self.tableView reloadData];// Reload the tableView now that there is new data
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+            [refreshControl endRefreshing];
+    }];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -61,13 +82,14 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *tweetCell= [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];//use the cell that we created
     Tweet *ctweet= self.tweets[indexPath.row];
-    tweetCell.screenNameLabel.text = ctweet.user.screenName;
+    tweetCell.screenNameLabel.text = [@"@" stringByAppendingString:ctweet.user.screenName];
     tweetCell.nameLabel.text=ctweet.user.name;
     
     tweetCell.tweetContentLabel.text= ctweet.text;
     tweetCell.dateLabel.text=ctweet.createdAtString;
     tweetCell.likeCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.favoriteCount ];
     tweetCell.retweetCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.retweetCount ];
+    tweetCell.replyCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.replyCount];
     NSURL *pfImageURL = [NSURL URLWithString:ctweet.user.profileImageURL];
     tweetCell.profileImageView.image= nil;
     
