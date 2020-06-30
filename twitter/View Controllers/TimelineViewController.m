@@ -96,8 +96,10 @@
     tweetCell.profileImageView.image= nil;
     
     [tweetCell.profileImageView setImageWithURL:pfImageURL];
-
-
+    
+    tweetCell.likeButton.selected=ctweet.favorited;
+    tweetCell.retweetButton.selected=ctweet.retweeted;
+    
     return tweetCell;
 }
 

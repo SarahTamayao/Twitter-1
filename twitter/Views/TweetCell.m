@@ -15,43 +15,78 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
-    UIImage *nonFavImage= [UIImage imageNamed:@"favor-icon"];
-    //UIImage *favImage= [UIImage imageNamed:@"favor-icon-red"];
-    UIImage *nonRTImage= [UIImage imageNamed:@"retweet-icon"];
-    UIImage *rtImage= [UIImage imageNamed:@"rewtweet-icon-green"];
-
-    [self.likeButton setImage:nonFavImage forState: UIControlStateNormal];
+    [self.likeButton setImage:[UIImage imageNamed:@"favor-icon"] forState: UIControlStateNormal];
     [self.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateSelected | UIControlStateHighlighted];
-    [self.retweetButton setImage:nonRTImage forState:UIControlStateNormal];
-    [self.retweetButton setImage:rtImage forState:UIControlStateSelected];
-     
-
+    [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateSelected];
 }
 - (IBAction)didTapLike:(id)sender {
     // TODO: Update the local tweet model
     self.tweet.favorited= !self.tweet.favorited;
     if(self.tweet.favorited)
+    {
         self.tweet.favoriteCount++;
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet * tweet, NSError *error) {
+            if(tweet)
+            {
+                NSLog(@"Success like post req");
+            }
+            else{
+                NSLog(@"Error POST for Like: %@", error.localizedDescription);
+            }
+        }];
+    }
     else
         self.tweet.favoriteCount--;
+    {
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet * tweet, NSError *error) {
+            if(tweet)
+            {
+                NSLog(@"Success unlike post req");
+            }
+            else{
+                NSLog(@"Error POST for unlike: %@", error.localizedDescription);
+            }
+        }];
+    }
     // TODO: Update cell UI
     self.likeButton.selected=self.tweet.favorited;
     [self refeshData];
-    // TODO: Send a POST request to the POST favorites/create endpoint
-    [[APIManager shared] favorite:self.tweet completion:^(Tweet * tweet, NSError *error) {
-        if(tweet)
-        {
-            NSLog(@"Success post req");
-            [self refeshData];
-        }
-        else{
-            NSLog(@"Error POST for Like: %@", error.localizedDescription);
-        }
-    }];
 
 }
 - (IBAction)didTapRetweet:(id)sender {
+    self.tweet.retweeted= !self.tweet.retweeted;
+    if(self.tweet.retweeted)
+    {
+        self.tweet.retweetCount++;
+        
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet * tweet, NSError *error) {
+            if(tweet)
+            {
+                NSLog(@"Success post rt req");
+            }
+            else{
+                NSLog(@"Error POST for rt: %@", error.localizedDescription);
+            }
+        }];
+    }
+    else
+    {
+        self.tweet.retweetCount--;
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet * tweet, NSError *error) {
+            if(tweet)
+            {
+                NSLog(@"Success un rt post req");
+            }
+            else{
+                NSLog(@"Error POST for un rt: %@", error.localizedDescription);
+            }
+        }];
+    }
+    // TODO: Update cell UI
+    self.retweetButton.selected=self.tweet.retweeted;
+    [self refeshData];
+
 }
 
 -(void)refeshData {

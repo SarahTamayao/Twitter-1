@@ -136,6 +136,7 @@
                                                     <rect key="frame" x="104" y="-1" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="retweet-icon"/>
+                                                    <state key="selected" image="retweet-icon-green"/>
                                                     <connections>
                                                         <action selector="didTapRetweet:" destination="JlA-4l-qRF" eventType="touchUpInside" id="2Eg-qy-sbI"/>
                                                     </connections>
@@ -293,5 +294,6 @@
         <image name="message-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
+        <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
 </document>
