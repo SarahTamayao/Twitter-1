@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 - (IBAction)didTapLike:(id)sender;
-- (void)refeshData;
+- (void)refreshData;
 
 @end
 

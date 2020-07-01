@@ -51,7 +51,7 @@
     }
     // TODO: Update cell UI
     self.likeButton.selected=self.tweet.favorited;
-    [self refeshData];
+    [self refreshData];
 
 }
 - (IBAction)didTapRetweet:(id)sender {
@@ -85,11 +85,11 @@
     }
     // TODO: Update cell UI
     self.retweetButton.selected=self.tweet.retweeted;
-    [self refeshData];
+    [self refreshData];
 
 }
 
--(void)refeshData {
+-(void)refreshData {
     self.screenNameLabel.text = [@"@" stringByAppendingString:self.tweet.user.screenName];
     self.nameLabel.text=self.tweet.user.name;
     

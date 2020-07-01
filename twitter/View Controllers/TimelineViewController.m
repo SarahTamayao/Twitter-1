@@ -14,6 +14,7 @@
 #import "ComposeViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "DetailTweetViewController.h"
 
 @interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>;
 
@@ -76,9 +77,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-   UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;//set the TimelineViewController as the delegate of the ComposeViewController
+    
+    //create a tweet
+    if([segue.identifier isEqualToString:@"composeSegue"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;//set the TimelineViewController as the delegate of the ComposeViewController
+    }
+    else if([segue.identifier isEqualToString:@"detailSegue"]){
+        DetailTweetViewController *deetVC= segue.destinationViewController;
+        UITableViewCell *tappedCell=sender;
+        NSIndexPath *tappedIndex= [self.tableView indexPathForCell:tappedCell];
+        deetVC.tweet=self.tweets[tappedIndex.row];
+        [self.tableView deselectRowAtIndexPath:tappedIndex animated:YES];
+    }
+    
 }
 
 
