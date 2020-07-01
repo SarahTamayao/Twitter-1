@@ -27,6 +27,7 @@
 }
 - (void) loadTweet{
     self.dateLabel.text=self.tweet.createdAtString;
+    self.timeLabel.text=self.tweet.timeStamp;
     self.likeCountLabel.text= [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
     self.retweetCountLabel.text= [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
     self.tweetTextLabel.text= self.tweet.text;

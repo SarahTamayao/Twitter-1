@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) User *user; // Contains Tweet author's name, screenname, etc.
 @property (nonatomic, strong) NSString *createdAtString; // Display date
 @property (nonatomic, strong) NSString *timeAgo; // Display date
+@property (nonatomic, strong) NSString *timeStamp; // Display date
 @property (nonatomic) int replyCount; // Update reply count label
 
 

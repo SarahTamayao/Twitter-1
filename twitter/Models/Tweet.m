@@ -45,6 +45,9 @@
         formatter.timeStyle = NSDateFormatterNoStyle;
         self.createdAtString = [formatter stringFromDate:date];
         self.timeAgo= [date shortTimeAgoSinceNow];
+        formatter.dateStyle = NSDateFormatterNoStyle;
+        formatter.timeStyle = NSDateFormatterShortStyle;
+        self.timeStamp=[formatter stringFromDate:date];
     }
     return self;
 }
