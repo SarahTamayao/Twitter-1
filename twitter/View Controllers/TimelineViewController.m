@@ -16,6 +16,7 @@
 #import "LoginViewController.h"
 #import "DetailTweetViewController.h"
 #import "ProfileViewController.h"
+#import "WebViewController.h"
 
 @interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>;
 
@@ -92,7 +93,6 @@
         composeController.delegate = self;//set the TimelineViewController as the delegate of the ComposeViewController
     }
     else if([segue.identifier isEqualToString:@"detailSegue"]){
-          NSLog(@"Sender %@", [sender class]);
         DetailTweetViewController *deetVC= segue.destinationViewController;
         UITableViewCell *tappedCell=sender;
         NSIndexPath *tappedIndex= [self.tableView indexPathForCell:tappedCell];
@@ -101,11 +101,14 @@
     }
     else if([segue.identifier isEqualToString:@"profileSegue"]){
         ProfileViewController *profVC= segue.destinationViewController;
-        NSLog(@" Sender %@", [sender class]);
        CGPoint tapped= [sender locationInView:self.tableView];
        NSIndexPath* indexPath= [self.tableView indexPathForRowAtPoint:tapped];
         Tweet *tappedTweet= self.tweets[indexPath.row];
        profVC.user=tappedTweet.user;
+    }
+    else if([segue.identifier isEqualToString:@"linkSegue"]){
+        WebViewController *webVC= segue.destinationViewController;
+        webVC.link=sender;
     }
     
 }
@@ -119,6 +122,13 @@
     tweetCell.nameLabel.text=ctweet.user.name;
     
     tweetCell.tweetContentLabel.text= ctweet.text;
+    tweetCell.tweetContentLabel.userInteractionEnabled = YES;
+    PatternTapResponder urlTapAction = ^(NSString *tappedString) {
+        [self didTapLink:[NSURL URLWithString:tappedString]];
+     };
+     [tweetCell.tweetContentLabel enableURLDetectionWithAttributes:
+     @{NSForegroundColorAttributeName:[UIColor blueColor],NSUnderlineStyleAttributeName:[NSNumber
+     numberWithInt:1],RLTapResponderAttributeName:urlTapAction}];
     tweetCell.dateLabel.text=ctweet.timeAgo;
     tweetCell.likeCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.favoriteCount ];
     tweetCell.retweetCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.retweetCount ];
@@ -159,15 +169,10 @@
    }
 }
 -(IBAction)imgTapped:(id)sender{
-
-    //UIImageView *tappedimage =(UIImageView*) sender;
-    //CGPoint tapped= [sender locationInView:self.tableView];
-    //NSIndexPath* indexPath= [self.tableView indexPathForRowAtPoint:tapped];
-    //Tweet *tappedTweet= self.tweets[indexPath.row];
-    //ProfileViewController *profVC= [[ProfileViewController alloc] init];
-    //profVC.user=tappedTweet.user;
-    
     [self performSegueWithIdentifier:@"profileSegue" sender:sender];
+}
+- (void) didTapLink:(NSURL*)link{
+    [self performSegueWithIdentifier:@"linkSegue" sender:link];
 }
 
 @end

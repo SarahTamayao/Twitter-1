@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TweetCell.h"
+#import "ResponsiveLabel.h"
+
 
 
 @interface TimelineViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) NSMutableArray *tweets;
 - (IBAction)imgTapped:(id)sender;
-
+- (void) didTapLink:(NSURL*)link;
 
 @end

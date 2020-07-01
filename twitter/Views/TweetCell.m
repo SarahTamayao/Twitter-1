@@ -93,15 +93,23 @@
     self.screenNameLabel.text = [@"@" stringByAppendingString:self.tweet.user.screenName];
     self.nameLabel.text=self.tweet.user.name;
     
-    self.tweetContentLabel.text= self.tweet.text;
+    self.tweetContentLabel.text = self.tweet.text;
+   self.tweetContentLabel.userInteractionEnabled = YES;
+    PatternTapResponder urlTapAction = ^(NSString *tappedString) {
+    NSLog(@"URL Tapped = %@",tappedString);
+    };
+    [self.tweetContentLabel enableURLDetectionWithAttributes:
+    @{NSForegroundColorAttributeName:[UIColor blueColor],NSUnderlineStyleAttributeName:[NSNumber
+    numberWithInt:1],RLTapResponderAttributeName:urlTapAction}];
+    
+    
     self.dateLabel.text=self.tweet.timeAgo;
     self.likeCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.favoriteCount ];
     self.retweetCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.retweetCount ];
     self.replyCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.replyCount];
-    NSURL *pfImageURL = [NSURL URLWithString:self.tweet.user.profileImageURL];
     self.profileImageView.image= nil;
     
-    [self.profileImageView setImageWithURL:pfImageURL];
+    [self.profileImageView setImageWithURL:self.tweet.user.profileImageURL];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

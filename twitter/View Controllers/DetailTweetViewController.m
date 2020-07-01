@@ -9,7 +9,7 @@
 #import "DetailTweetViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
-
+#import "ResponsiveLabel.h"
 @interface DetailTweetViewController ()
 
 @end
@@ -30,7 +30,16 @@
     self.timeLabel.text=self.tweet.timeStamp;
     self.likeCountLabel.text= [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
     self.retweetCountLabel.text= [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+    
     self.tweetTextLabel.text= self.tweet.text;
+    self.tweetTextLabel.userInteractionEnabled = YES;
+    PatternTapResponder urlTapAction = ^(NSString *tappedString) {
+        
+    };
+    [self.tweetTextLabel enableURLDetectionWithAttributes:
+    @{NSForegroundColorAttributeName:[UIColor blueColor],NSUnderlineStyleAttributeName:[NSNumber
+    numberWithInt:1],RLTapResponderAttributeName:urlTapAction}];
+    
     self.nameLabel.text=self.tweet.user.name;
     self.userNameLabel.text=[@"@" stringByAppendingString:self.tweet.user.screenName];
     self.profileImage.image= nil;

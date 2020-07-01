@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "ResponsiveLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TweetCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *tweetContentLabel;
+@property (weak, nonatomic) IBOutlet ResponsiveLabel *tweetContentLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;

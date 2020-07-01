@@ -18,6 +18,7 @@ PODS:
     - AFNetworking/NSURLSession (~> 3.0.0)
   - DateTools (2.0.0)
   - "NSDate+TimeAgo (1.0.6)"
+  - ResponsiveLabel (1.0.11)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - BDBOAuth1Manager
   - DateTools
   - "NSDate+TimeAgo"
+  - ResponsiveLabel (~> 1.0.10)
   - TTTAttributedLabel
 
 SPEC REPOS:
@@ -33,6 +35,7 @@ SPEC REPOS:
     - BDBOAuth1Manager
     - DateTools
     - "NSDate+TimeAgo"
+    - ResponsiveLabel
     - TTTAttributedLabel
 
 SPEC CHECKSUMS:
@@ -40,8 +43,9 @@ SPEC CHECKSUMS:
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   "NSDate+TimeAgo": 35601c619b2d59290055e4fe76e61d97677a2360
+  ResponsiveLabel: 9e31c425ed082481faf2360689243bb0ec8f8b22
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 2ecf195a83a964af581a1525611e65b4a059ba38
+PODFILE CHECKSUM: 327f5fb3ffedec703859901c3a531bf5eb6bec8c
 
 COCOAPODS: 1.9.3

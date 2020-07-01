@@ -23,6 +23,7 @@
 		DCC179F524AB9371006D7C94 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC179F424AB9371006D7C94 /* ComposeViewController.m */; };
 		DCCBB18524AA8F0E009AF342 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCBB18424AA8F0E009AF342 /* TweetCell.m */; };
 		DCFA4CBB24AC4FD5005A3A64 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFA4CBA24AC4FD5005A3A64 /* ProfileViewController.m */; };
+		DCFA4CC424AD33F5005A3A64 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFA4CC324AD33F5005A3A64 /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		DCCBB18424AA8F0E009AF342 /* TweetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		DCFA4CB924AC4FD5005A3A64 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		DCFA4CBA24AC4FD5005A3A64 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		DCFA4CC224AD33F5005A3A64 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		DCFA4CC324AD33F5005A3A64 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 				DC79862724ABFF370001F5AA /* DetailTweetViewController.m */,
 				DCFA4CB924AC4FD5005A3A64 /* ProfileViewController.h */,
 				DCFA4CBA24AC4FD5005A3A64 /* ProfileViewController.m */,
+				DCFA4CC224AD33F5005A3A64 /* WebViewController.h */,
+				DCFA4CC324AD33F5005A3A64 /* WebViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				DCC179F524AB9371006D7C94 /* ComposeViewController.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
 				DCA5139024AA8243009CD681 /* Tweet.m in Sources */,
+				DCFA4CC424AD33F5005A3A64 /* WebViewController.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,

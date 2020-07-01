@@ -11,6 +11,7 @@ target 'twitter' do
   pod 'TTTAttributedLabel'
   pod 'DateTools'
   pod 'NSDate+TimeAgo'
+ pod 'ResponsiveLabel', '~> 1.0.10'
 end
 
 post_install do |installer|
