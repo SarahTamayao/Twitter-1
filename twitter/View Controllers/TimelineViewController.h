@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TweetCell.h"
 
 
 @interface TimelineViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) NSMutableArray *tweets;
+- (IBAction)imgTapped:(id)sender;
+
 
 @end

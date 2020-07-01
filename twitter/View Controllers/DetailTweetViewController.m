@@ -33,11 +33,9 @@
     self.tweetTextLabel.text= self.tweet.text;
     self.nameLabel.text=self.tweet.user.name;
     self.userNameLabel.text=[@"@" stringByAppendingString:self.tweet.user.screenName];
-
-    NSURL *pfImageURL = [NSURL URLWithString:self.tweet.user.profileImageURL];
     self.profileImage.image= nil;
     
-    [self.profileImage setImageWithURL:pfImageURL];
+    [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
     
     self.likeButton.selected=self.tweet.favorited;
     self.retweetButton.selected=self.tweet.retweeted;    
@@ -117,9 +115,8 @@
     self.dateLabel.text=self.tweet.createdAtString;
     self.likeCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.favoriteCount ];
     self.retweetCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.retweetCount ];
-    NSURL *pfImageURL = [NSURL URLWithString:self.tweet.user.profileImageURL];
     self.profileImage.image= nil;
-    [self.profileImage setImageWithURL:pfImageURL];
+    [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
 }
 /*
 #pragma mark - Navigation

@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "DetailTweetViewController.h"
+#import "ProfileViewController.h"
 
 @interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>;
 
@@ -91,11 +92,20 @@
         composeController.delegate = self;//set the TimelineViewController as the delegate of the ComposeViewController
     }
     else if([segue.identifier isEqualToString:@"detailSegue"]){
+          NSLog(@"Sender %@", [sender class]);
         DetailTweetViewController *deetVC= segue.destinationViewController;
         UITableViewCell *tappedCell=sender;
         NSIndexPath *tappedIndex= [self.tableView indexPathForCell:tappedCell];
         deetVC.tweet=self.tweets[tappedIndex.row];
         [self.tableView deselectRowAtIndexPath:tappedIndex animated:YES];
+    }
+    else if([segue.identifier isEqualToString:@"profileSegue"]){
+        ProfileViewController *profVC= segue.destinationViewController;
+        NSLog(@" Sender %@", [sender class]);
+       CGPoint tapped= [sender locationInView:self.tableView];
+       NSIndexPath* indexPath= [self.tableView indexPathForRowAtPoint:tapped];
+        Tweet *tappedTweet= self.tweets[indexPath.row];
+       profVC.user=tappedTweet.user;
     }
     
 }
@@ -113,10 +123,16 @@
     tweetCell.likeCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.favoriteCount ];
     tweetCell.retweetCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.retweetCount ];
     tweetCell.replyCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.replyCount];
-    NSURL *pfImageURL = [NSURL URLWithString:ctweet.user.profileImageURL];
     tweetCell.profileImageView.image= nil;
     
-    [tweetCell.profileImageView setImageWithURL:pfImageURL];
+    [tweetCell.profileImageView setImageWithURL:ctweet.user.profileImageURL];
+    tweetCell.profileImageView.gestureRecognizers=nil;
+    
+    UITapGestureRecognizer *imgtapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTapped:)];
+    tweetCell.imgTapRecog= imgtapGesture;
+    [tweetCell.profileImageView addGestureRecognizer:tweetCell.imgTapRecog];//add to the image view
+    //tweetCell.imgTapRecog.tag= indexPath.row;
+
     
     tweetCell.likeButton.selected=ctweet.favorited;
     tweetCell.retweetButton.selected=ctweet.retweeted;
@@ -141,6 +157,17 @@
    {
        NSLog(@"Success logout");
    }
+}
+-(IBAction)imgTapped:(id)sender{
+
+    //UIImageView *tappedimage =(UIImageView*) sender;
+    //CGPoint tapped= [sender locationInView:self.tableView];
+    //NSIndexPath* indexPath= [self.tableView indexPathForRowAtPoint:tapped];
+    //Tweet *tappedTweet= self.tweets[indexPath.row];
+    //ProfileViewController *profVC= [[ProfileViewController alloc] init];
+    //profVC.user=tappedTweet.user;
+    
+    [self performSegueWithIdentifier:@"profileSegue" sender:sender];
 }
 
 @end
