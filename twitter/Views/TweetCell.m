@@ -94,7 +94,7 @@
     self.nameLabel.text=self.tweet.user.name;
     
     self.tweetContentLabel.text= self.tweet.text;
-    self.dateLabel.text=self.tweet.createdAtString;
+    self.dateLabel.text=self.tweet.timeAgo;
     self.likeCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.favoriteCount ];
     self.retweetCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.retweetCount ];
     self.replyCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.replyCount];
