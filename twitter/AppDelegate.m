@@ -24,20 +24,23 @@
         //UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"TweetsNavigationController"];
         UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
         self.window.rootViewController = tabBarController;
-        [[APIManager shared] getUserProfile:^(User * user, NSError *error) {
-              if(user)
-              {
-                  self.currentUser=user;
-              }
-              else{
-                  NSLog(@"Error getting user :%@", error.localizedDescription);
-              }
-          }];
+        [self getUserData];
+
     }
     
     return YES;
 }
-
+- (void) getUserData{
+    [[APIManager shared] getUserProfile:^(User * user, NSError *error) {
+        if(user)
+        {
+            self.currentUser=user;
+        }
+        else{
+            NSLog(@"Error getting user :%@", error.localizedDescription);
+        }
+    }];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

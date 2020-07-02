@@ -18,7 +18,7 @@
 #import "ProfileViewController.h"
 #import "WebViewController.h"
 
-@interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, UITabBarControllerDelegate>;
+@interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, UIScrollViewDelegate>;
 
 @end
 
@@ -28,10 +28,20 @@
     [super viewDidLoad];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
-    self.tabBarController.delegate=self;
     UIRefreshControl *refreshControl= [[UIRefreshControl alloc] init];//initialize the refresh control
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];//add an event listener
-    [self.tableView insertSubview:refreshControl atIndex:0];//add into the storyboard    
+    [self.tableView insertSubview:refreshControl atIndex:0];//add into the storyboard
+    
+    //setup infinite scroll loading indicator in the frame
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+    
+    //added to allow users to see the indicator at the bottom
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
     
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
@@ -53,10 +63,6 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
-    self.hidesBottomBarWhenPushed = NO;
-    self.tabBarController.tabBar.hidden = NO;
-
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,6 +190,39 @@
 }
 - (void) didTapLink:(NSURL*)link{
     [self performSegueWithIdentifier:@"linkSegue" sender:link];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading)
+    {
+        int scrollContentHeight=self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging)
+        {
+            self.isMoreDataLoading=YES;
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+            
+            [[APIManager shared] loadMoreTweetsWithCompletion:[self.tweets lastObject] completion:^(NSArray *tweets, NSError *error) {
+                
+                self.isMoreDataLoading=NO;
+                if(tweets)
+                {
+                    [self.tweets addObjectsFromArray:tweets]; //add the new tweets to what you already have
+                    [self.loadingMoreView stopAnimating];
+                    [self.tableView reloadData];
+                }
+                else
+                {
+                    NSLog(@"Error loading more tweets: %@", error.localizedDescription);
+                }
+                
+            }];
+        }
+        
+    }
 }
 
 @end

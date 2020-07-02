@@ -24,6 +24,7 @@
 		DCCBB18524AA8F0E009AF342 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCBB18424AA8F0E009AF342 /* TweetCell.m */; };
 		DCFA4CBB24AC4FD5005A3A64 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFA4CBA24AC4FD5005A3A64 /* ProfileViewController.m */; };
 		DCFA4CC424AD33F5005A3A64 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFA4CC324AD33F5005A3A64 /* WebViewController.m */; };
+		DCFF79A224AE357E0022D6C7 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFF79A124AE357E0022D6C7 /* InfiniteScrollActivityView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		DCFA4CBA24AC4FD5005A3A64 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		DCFA4CC224AD33F5005A3A64 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		DCFA4CC324AD33F5005A3A64 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		DCFF79A024AE357E0022D6C7 /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		DCFF79A124AE357E0022D6C7 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,8 @@
 			children = (
 				DCCBB18324AA8F0E009AF342 /* TweetCell.h */,
 				DCCBB18424AA8F0E009AF342 /* TweetCell.m */,
+				DCFF79A024AE357E0022D6C7 /* InfiniteScrollActivityView.h */,
+				DCFF79A124AE357E0022D6C7 /* InfiniteScrollActivityView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCFF79A224AE357E0022D6C7 /* InfiniteScrollActivityView.m in Sources */,
 				DCCBB18524AA8F0E009AF342 /* TweetCell.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				DCA5138D24AA817B009CD681 /* User.m in Sources */,

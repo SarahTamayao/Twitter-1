@@ -12,7 +12,7 @@
 -(instancetype) initWithDictionary:(NSDictionary *)dictionary{
     self = [super init];
     
-    NSLog(@"%@", dictionary);
+    //NSLog(@"%@", dictionary);
     if(self)//not equal null
     {
         self.name=dictionary[@"name"];

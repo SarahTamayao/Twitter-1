@@ -26,7 +26,17 @@
     }
     [self loadProfile];
 }
+-(void) viewWillAppear:(BOOL)animated{
+    [self loadProfile];
+}
 - (void) loadProfile{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if([self.user.id_str isEqualToString:appDelegate.currentUser.id_str])
+    {
+        [appDelegate getUserData];
+        self.user=appDelegate.currentUser;
+    }
+    
     if(self.user.profileBannerURL==nil)
         [self.coverPic setImage:[UIImage imageNamed:@"twitterBlue"]];//default blue background
     else
@@ -39,6 +49,7 @@
     self.profilePic.layer.borderColor=[[UIColor darkGrayColor] CGColor];
     self.profilePic.layer.zPosition=2;
     
+    self.descriptionLabel.text=self.user.userDescription;
     self.nameLabel.text=self.user.name;
     self.usernameLabel.text=[@"@" stringByAppendingString:self.user.screenName];
     
@@ -77,7 +88,7 @@
             // Add the letter for the abbreviation
             abbrevNum = [NSString stringWithFormat:@"%@%@", numberString, [abbrev objectAtIndex:i]];
 
-            NSLog(@"%@", abbrevNum);
+            //NSLog(@"%@", abbrevNum);
 
         }
 

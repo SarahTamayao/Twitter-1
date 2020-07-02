@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *followerCount;
 @property (strong, nonatomic) IBOutlet UILabel *followingCount;
 @property (strong, nonatomic) IBOutlet UILabel *tweetCount;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 - (void) loadProfile;
 -(NSString *)abbreviateNumber:(int)num withDecimal:(int)dec;
 - (NSString *) floatToString:(float) val;
