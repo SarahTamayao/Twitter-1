@@ -110,6 +110,8 @@
     self.profileImageView.image= nil;
     
     [self.profileImageView setImageWithURL:self.tweet.user.profileImageURL];
+    self.profileImageView.layer.cornerRadius=self.profileImageView.frame.size.width/2;
+    self.profileImageView.clipsToBounds=YES;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

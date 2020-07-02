@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "AppDelegate.h"
 @interface ProfileViewController ()
 
 @end
@@ -17,7 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    if(!self.user)
+    {
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        self.user=appDelegate.currentUser;
+        NSLog(@"Here in load user");
+    }
     [self loadProfile];
 }
 - (void) loadProfile{

@@ -18,7 +18,7 @@
 #import "ProfileViewController.h"
 #import "WebViewController.h"
 
-@interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>;
+@interface TimelineViewController ()<UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, UITabBarControllerDelegate>;
 
 @end
 
@@ -28,9 +28,11 @@
     [super viewDidLoad];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
+    self.tabBarController.delegate=self;
     UIRefreshControl *refreshControl= [[UIRefreshControl alloc] init];//initialize the refresh control
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];//add an event listener
-    [self.tableView insertSubview:refreshControl atIndex:0];//add into the storyboard
+    [self.tableView insertSubview:refreshControl atIndex:0];//add into the storyboard    
+    
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -45,11 +47,15 @@
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
-    }];    
+    }];
+    
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    self.hidesBottomBarWhenPushed = NO;
+    self.tabBarController.tabBar.hidden = NO;
+
 
 }
 
@@ -110,6 +116,7 @@
         WebViewController *webVC= segue.destinationViewController;
         webVC.link=sender;
     }
+    
     
 }
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TweetCell.h"
 #import "ResponsiveLabel.h"
-
+#import "User.h"
 
 
 @interface TimelineViewController : UIViewController

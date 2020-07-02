@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "APIManager.h"
+#import "User.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +21,18 @@
     
     if ([[APIManager shared] isAuthorized]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"TweetsNavigationController"];
-        self.window.rootViewController = navigationController;
+        //UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"TweetsNavigationController"];
+        UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+        self.window.rootViewController = tabBarController;
+        [[APIManager shared] getUserProfile:^(User * user, NSError *error) {
+              if(user)
+              {
+                  self.currentUser=user;
+              }
+              else{
+                  NSLog(@"Error getting user :%@", error.localizedDescription);
+              }
+          }];
     }
     
     return YES;

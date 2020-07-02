@@ -8,7 +8,8 @@
 
 #import "LoginViewController.h"
 #import "APIManager.h"
-
+#import "AppDelegate.h"
+#import "User.h"
 @interface LoginViewController ()
 
 @end
