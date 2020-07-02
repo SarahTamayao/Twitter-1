@@ -48,6 +48,13 @@
         formatter.dateStyle = NSDateFormatterNoStyle;
         formatter.timeStyle = NSDateFormatterShortStyle;
         self.timeStamp=[formatter stringFromDate:date];
+        //NSLog(@"!!!! %@", dictionary[@"entities"][@"media"]);
+        if(dictionary[@"entities"][@"media"])//if it has media
+        {
+            self.mediaUrl= [NSURL URLWithString:dictionary[@"entities"][@"media"][0][@"media_url_https"]];
+            NSDictionary* size=dictionary[@"entities"][@"media"][0][@"sizes"][@"large"];
+            self.mediaRatio= [size[@"w"] doubleValue]/[size[@"h"] doubleValue];
+        }
     }
     return self;
 }

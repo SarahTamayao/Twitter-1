@@ -25,7 +25,6 @@
         UITabBarController *tabBarController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
         self.window.rootViewController = tabBarController;
         [self getUserData];
-
     }
     
     return YES;

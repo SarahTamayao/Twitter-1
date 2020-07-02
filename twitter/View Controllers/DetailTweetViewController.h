@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) Tweet *tweet;
+@property (weak, nonatomic) IBOutlet UIImageView *mediaImage;
 -(void) loadTweet;
 -(void) refreshData;
 -(void) didTapLink:(NSURL*)link;

@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *timeAgo; // Display date
 @property (nonatomic, strong) NSString *timeStamp; // Display date
 @property (nonatomic) int replyCount; // Update reply count label
+@property (nonatomic, strong) NSURL *mediaUrl;
+@property (nonatomic) double mediaRatio;
 
 
 // For Retweets

@@ -17,8 +17,9 @@
     {
         self.name=dictionary[@"name"];
         self.screenName=dictionary[@"screen_name"];
+        NSString*profileClear=[dictionary[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         if(dictionary[@"profile_image_url_https"])
-            self.profileImageURL=[NSURL URLWithString:dictionary[@"profile_image_url_https"]];
+            self.profileImageURL=[NSURL URLWithString:profileClear];
         if(dictionary[@"profile_background_image_url_https"])
             self.profileBannerURL=[NSURL URLWithString:dictionary[@"profile_banner_url"]];
         

@@ -46,6 +46,7 @@
     self.profileImage.image= nil;
     
     [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
+    [self.mediaImage setImageWithURL:self.tweet.mediaUrl];
     self.profileImage.layer.cornerRadius=self.profileImage.frame.size.width/2;
     self.profileImage.clipsToBounds=YES;
     self.profileImage.layer.masksToBounds = YES;
@@ -131,6 +132,7 @@
     self.retweetCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.retweetCount ];
     self.profileImage.image= nil;
     [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
+    [self.mediaImage setImageWithURL:self.tweet.mediaUrl];
 }
 - (void) didTapLink:(NSURL *)link{
     [self performSegueWithIdentifier:@"detailLinkSegue" sender:link];

@@ -159,6 +159,21 @@
     tweetCell.imgTapRecog= imgtapGesture;
     [tweetCell.profileImageView addGestureRecognizer:tweetCell.imgTapRecog];//add to the image view
     //tweetCell.imgTapRecog.tag= indexPath.row;
+    
+    tweetCell.mediaView.image= nil;
+    if(ctweet.mediaUrl)
+    {
+        CGRect mediaRect = tweetCell.mediaView.frame;
+        mediaRect.size.height = 150;
+        tweetCell.mediaView.frame = mediaRect;
+        [tweetCell.mediaView setImageWithURL:ctweet.mediaUrl];
+    }
+    else
+    {
+        CGRect mediaRect = tweetCell.mediaView.frame;
+        mediaRect.size.height = 0;
+        tweetCell.mediaView.frame = mediaRect;
+    }
 
     
     tweetCell.likeButton.selected=ctweet.favorited;

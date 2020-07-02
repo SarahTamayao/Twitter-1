@@ -91,6 +91,7 @@
 }
 
 -(void)refreshData {
+
     self.screenNameLabel.text = [@"@" stringByAppendingString:self.tweet.user.screenName];
     self.nameLabel.text=self.tweet.user.name;
     
@@ -110,6 +111,8 @@
     self.replyCountLabel.text=[NSString stringWithFormat:@"%d",self.tweet.replyCount];
     self.profileImageView.image= nil;
     
+    if(self.tweet.mediaUrl)
+        [self.mediaView setImageWithURL:self.tweet.mediaUrl];
     [self.profileImageView setImageWithURL:self.tweet.user.profileImageURL];
     self.profileImageView.layer.cornerRadius=self.profileImageView.frame.size.width/2;
     self.profileImageView.clipsToBounds=YES;

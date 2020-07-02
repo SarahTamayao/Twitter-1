@@ -8,7 +8,7 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController ()
+@interface WebViewController ()<WKNavigationDelegate>
 
 @end
 
@@ -16,9 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.webView];
+    self.webView.navigationDelegate=self;
     // Do any additional setup after loading the view.
     NSURLRequest *request=[NSURLRequest requestWithURL:self.link];
-    [self.webView loadRequest:request ];//load the trailer in the webview
+    [self.webView loadRequest:request];
                    
     [self.webView reload];
 }

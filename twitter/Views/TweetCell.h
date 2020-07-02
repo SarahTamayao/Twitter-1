@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (weak, nonatomic) IBOutlet UIImageView *mediaView;
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *imgTapRecog;
 
 - (IBAction)didTapLike:(id)sender;
