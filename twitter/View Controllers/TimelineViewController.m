@@ -143,6 +143,10 @@
     tweetCell.profileImageView.image= nil;
     
     [tweetCell.profileImageView setImageWithURL:ctweet.user.profileImageURL];
+    tweetCell.profileImageView.layer.cornerRadius=tweetCell.profileImageView.frame.size.width/2;
+    tweetCell.profileImageView.clipsToBounds=YES;
+    tweetCell.profileImageView.layer.masksToBounds = YES;
+    
     tweetCell.profileImageView.gestureRecognizers=nil;
     
     UITapGestureRecognizer *imgtapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTapped:)];

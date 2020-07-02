@@ -27,8 +27,18 @@
     [self loadProfile];
 }
 - (void) loadProfile{
-    [self.coverPic setImageWithURL:self.user.profileBannerURL];
+    if(self.user.profileBannerURL==nil)
+        [self.coverPic setImage:[UIImage imageNamed:@"twitterBlue"]];//default blue background
+    else
+        [self.coverPic setImageWithURL:self.user.profileBannerURL ];
     [self.profilePic setImageWithURL:self.user.profileImageURL];
+    self.profilePic.layer.cornerRadius=self.profilePic.frame.size.width/2;
+    self.profilePic.clipsToBounds=YES;
+    self.profilePic.layer.masksToBounds = YES;
+    self.profilePic.layer.borderWidth=1;
+    self.profilePic.layer.borderColor=[[UIColor darkGrayColor] CGColor];
+    self.profilePic.layer.zPosition=2;
+    
     self.nameLabel.text=self.user.name;
     self.usernameLabel.text=[@"@" stringByAppendingString:self.user.screenName];
     

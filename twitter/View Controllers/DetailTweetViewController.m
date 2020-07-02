@@ -45,7 +45,11 @@
     self.profileImage.image= nil;
     
     [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
-    
+    self.profileImage.layer.cornerRadius=self.profileImage.frame.size.width/2;
+    self.profileImage.clipsToBounds=YES;
+    self.profileImage.layer.masksToBounds = YES;
+
+
     self.likeButton.selected=self.tweet.favorited;
     self.retweetButton.selected=self.tweet.retweeted;    
 }

@@ -9,6 +9,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation TweetCell
 
@@ -112,6 +113,8 @@
     [self.profileImageView setImageWithURL:self.tweet.user.profileImageURL];
     self.profileImageView.layer.cornerRadius=self.profileImageView.frame.size.width/2;
     self.profileImageView.clipsToBounds=YES;
+    self.profileImageView.layer.masksToBounds = YES;
+
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
