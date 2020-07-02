@@ -54,11 +54,11 @@
             </objects>
             <point key="canvasLocation" x="-212" y="-168"/>
         </scene>
-        <!--Profile-->
+        <!--Me-->
         <scene sceneID="l4y-6D-CUQ">
             <objects>
                 <navigationController id="rLN-23-a2O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" selectedImage="profile-Icon" id="gjj-hN-NOb"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="profile-Icon" id="gjj-hN-NOb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="toO-9A-FbA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -396,7 +396,7 @@
                                 <action selector="tapLogout:" destination="Lbl-k5-U4i" id="Aha-72-rgN"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="lHQ-Gr-Spa">
+                        <barButtonItem key="rightBarButtonItem" image="edit-icon" style="plain" id="lHQ-Gr-Spa">
                             <connections>
                                 <segue destination="09Q-0Z-xmb" kind="presentation" identifier="composeSegue" id="eEG-Gk-id1"/>
                             </connections>
@@ -419,6 +419,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfJ-lI-6DG">
+                                <rect key="frame" x="41" y="96" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="link"/>
+                                <connections>
+                                    <segue destination="0Ov-1y-mfc" kind="show" identifier="detailLinkSegue" id="WLZ-V3-8zx"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqK-M4-kLG">
                                 <rect key="frame" x="23" y="205" width="35" height="20"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
@@ -597,9 +605,8 @@
         <!--Timeline-->
         <scene sceneID="WUT-Ke-VeR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JHS-35-jFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="FTQ-G1-N2b" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Timeline" selectedImage="home-icon" id="1PV-zH-F1a"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" image="home-icon" id="1PV-zH-F1a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ytz-Ev-cUB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -610,6 +617,7 @@
                         <segue destination="Lbl-k5-U4i" kind="relationship" relationship="rootViewController" id="gdk-PG-xTm"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JHS-35-jFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1799.2" y="36.431784107946029"/>
         </scene>
@@ -635,7 +643,7 @@
                         <viewLayoutGuide key="safeArea" id="ZIP-Xt-6b5"/>
                     </view>
                     <navigationItem key="navigationItem" id="JyL-8Z-TbQ">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="hKo-Pg-1Vu">
+                        <barButtonItem key="leftBarButtonItem" image="close-icon" style="plain" id="hKo-Pg-1Vu">
                             <connections>
                                 <action selector="closeTweet:" destination="zg2-QJ-WRR" id="f2J-8d-MAa"/>
                             </connections>
@@ -682,6 +690,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Rte-Rm-PPw"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NnP-N4-K4x">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -696,10 +705,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aZR-zf-cKE"/>
+        <segue reference="TRY-Wq-8BV"/>
+        <segue reference="3Zs-hT-bU6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="TwitterLogoBlue" width="200" height="200"/>
+        <image name="close-icon" width="26" height="24"/>
+        <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
         <image name="favor-icon-red" width="30" height="30"/>
         <image name="home-icon" width="30" height="30"/>

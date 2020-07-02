@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Tweet *tweet;
 -(void) loadTweet;
 -(void) refreshData;
+-(void) didTapLink:(NSURL*)link;
 @end
 
 NS_ASSUME_NONNULL_END

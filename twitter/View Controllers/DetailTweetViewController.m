@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
 #import "ResponsiveLabel.h"
+#import "WebViewController.h"
 @interface DetailTweetViewController ()
 
 @end
@@ -34,7 +35,7 @@
     self.tweetTextLabel.text= self.tweet.text;
     self.tweetTextLabel.userInteractionEnabled = YES;
     PatternTapResponder urlTapAction = ^(NSString *tappedString) {
-        
+        [self didTapLink:[NSURL URLWithString:tappedString]];
     };
     [self.tweetTextLabel enableURLDetectionWithAttributes:
     @{NSForegroundColorAttributeName:[UIColor blueColor],NSUnderlineStyleAttributeName:[NSNumber
@@ -131,14 +132,22 @@
     self.profileImage.image= nil;
     [self.profileImage setImageWithURL:self.tweet.user.profileImageURL];
 }
-/*
+- (void) didTapLink:(NSURL *)link{
+    [self performSegueWithIdentifier:@"detailLinkSegue" sender:link];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"detailLinkSegue"]){
+        NSURL *link= (NSURL*) sender;
+        WebViewController *webVC= segue.destinationViewController;
+        webVC.link=link;
+    }
 }
-*/
+
 
 @end
