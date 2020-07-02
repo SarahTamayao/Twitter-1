@@ -9,7 +9,7 @@
 #import "ComposeViewController.h"
 #import "APIManager.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController ()<UITextViewDelegate>
 
 @end
 
@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tweetTextView.delegate=self;
     [self.tweetTextView setClearsOnInsertion:YES];
 }
 - (IBAction)sendTweet:(id)sender {
@@ -35,7 +36,14 @@
 
 - (IBAction)closeTweet:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-    
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // TODO: Check the proposed new text character count
+   // Allow or disallow the new text
+    int charLimit=280;
+    //see if user is allowed to add the new text
+    NSString *newText= [self.tweetTextView.text stringByReplacingCharactersInRange:range withString:text];
+    return newText.length < charLimit;
 }
 
 /*
