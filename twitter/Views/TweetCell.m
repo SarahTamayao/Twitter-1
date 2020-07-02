@@ -38,8 +38,8 @@
         }];
     }
     else
-        self.tweet.favoriteCount--;
     {
+        self.tweet.favoriteCount--;
         [[APIManager shared] unfavorite:self.tweet completion:^(Tweet * tweet, NSError *error) {
             if(tweet)
             {

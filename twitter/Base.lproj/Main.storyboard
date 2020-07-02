@@ -652,8 +652,8 @@
                                 <rect key="frame" x="20" y="89" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Character count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szc-Au-jMD">
-                                <rect key="frame" x="20" y="173" width="124" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="280" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdH-eH-BTf">
+                                <rect key="frame" x="40" y="167" width="31" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -676,7 +676,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="charCount" destination="rdH-eH-BTf" id="Vas-xl-f5j"/>
                         <outlet property="closeButton" destination="hKo-Pg-1Vu" id="Mvz-Yo-oc9"/>
+                        <outlet property="profileImage" destination="3AY-hz-heV" id="As3-YC-B2B"/>
                         <outlet property="tweetButton" destination="mQn-dq-NdP" id="ZSo-Rx-GKs"/>
                         <outlet property="tweetTextView" destination="9uS-dO-epe" id="K0Q-ZL-gX5"/>
                     </connections>
