@@ -9,7 +9,8 @@
 #import "ProfileViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "AppDelegate.h"
-@interface ProfileViewController ()
+#import "APIManager.h"
+@interface ProfileViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -18,12 +19,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    
     if(!self.user)
     {
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         self.user=appDelegate.currentUser;
         NSLog(@"Here in load user");
     }
+    [[APIManager shared] getUserTimelineWithCompletion:self.user completion:^(NSArray *tweets, NSError *error) {
+        if(tweets)
+        {
+            self.userTweets= [tweets mutableCopy];
+            NSLog(@"Success getting user tweets");
+        }
+        else
+        {
+            NSLog(@"There was an error getting user tweets: %@", error.localizedDescription);
+        }
+        [self.tableView reloadData];
+    }];
+    
     [self loadProfile];
 }
 -(void) viewWillAppear:(BOOL)animated{
@@ -119,5 +136,66 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    TweetCell *tweetCell= [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];//use the cell that we created
+    Tweet *ctweet= self.userTweets[indexPath.row];
+    tweetCell.tweet=ctweet;
+    tweetCell.screenNameLabel.text = [@"@" stringByAppendingString:ctweet.user.screenName];
+    tweetCell.nameLabel.text=ctweet.user.name;
+    
+    tweetCell.tweetContentLabel.text= ctweet.text;
+    tweetCell.tweetContentLabel.userInteractionEnabled = YES;
+    /*
+    PatternTapResponder urlTapAction = ^(NSString *tappedString) {
+        [self didTapLink:[NSURL URLWithString:tappedString]];
+     };
+     [tweetCell.tweetContentLabel enableURLDetectionWithAttributes:
+     @{NSForegroundColorAttributeName:[UIColor blueColor],NSUnderlineStyleAttributeName:[NSNumber
+     numberWithInt:1],RLTapResponderAttributeName:urlTapAction}];
+    */
+    tweetCell.dateLabel.text=ctweet.timeAgo;
+    tweetCell.likeCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.favoriteCount ];
+    tweetCell.retweetCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.retweetCount ];
+    tweetCell.replyCountLabel.text=[NSString stringWithFormat:@"%d",ctweet.replyCount];
+    tweetCell.profileImageView.image= nil;
+    
+    [tweetCell.profileImageView setImageWithURL:ctweet.user.profileImageURL];
+    tweetCell.profileImageView.layer.cornerRadius=tweetCell.profileImageView.frame.size.width/2;
+    tweetCell.profileImageView.clipsToBounds=YES;
+    tweetCell.profileImageView.layer.masksToBounds = YES;
+    
+    tweetCell.profileImageView.gestureRecognizers=nil;
+    
+   // UITapGestureRecognizer *imgtapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTapped:)];
+    //tweetCell.imgTapRecog= imgtapGesture;
+    //[tweetCell.profileImageView addGestureRecognizer:tweetCell.imgTapRecog];//add to the image view
+    //tweetCell.imgTapRecog.tag= indexPath.row;
+    
+    tweetCell.mediaView.image= nil;
+    if(ctweet.mediaUrl)
+    {
+        CGRect mediaRect = tweetCell.mediaView.frame;
+        mediaRect.size.height = 150;
+        tweetCell.mediaView.frame = mediaRect;
+        [tweetCell.mediaView setImageWithURL:ctweet.mediaUrl];
+    }
+    else
+    {
+        CGRect mediaRect = tweetCell.mediaView.frame;
+        mediaRect.size.height = 0;
+        tweetCell.mediaView.frame = mediaRect;
+    }
+
+    
+    tweetCell.likeButton.selected=ctweet.favorited;
+    tweetCell.retweetButton.selected=ctweet.retweeted;
+    
+    return tweetCell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.userTweets.count;
+}
 
 @end

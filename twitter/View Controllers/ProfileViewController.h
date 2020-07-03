@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "TweetCell.h"
+#import "Tweet.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : UIViewController
@@ -18,8 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *followerCount;
 @property (strong, nonatomic) IBOutlet UILabel *followingCount;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UILabel *tweetCount;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) NSArray* userTweets;
 - (void) loadProfile;
 -(NSString *)abbreviateNumber:(int)num withDecimal:(int)dec;
 - (NSString *) floatToString:(float) val;

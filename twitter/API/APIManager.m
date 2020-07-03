@@ -137,6 +137,19 @@ static NSString * const consumerSecret = @"4qVHgVhlr1NIPlpgehYd62xQYNq7v8pJi6M1r
         completion(nil, error);
     }];
 }
+- (void)getUserTimelineWithCompletion:(User* )user completion:(void(^)(NSArray *tweets, NSError *error))completion{
+    NSDictionary *parameters = @{@"user_id": user.id_str};
+    [self GET:@"1.1/statuses/user_timeline.json?tweet_mode=extended"
+    parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+        // Success
+    //NSLog(@"%@", tweetDictionaries);
+        NSMutableArray *tweets  = [Tweet tweetsWithArray:tweetDictionaries];
+        completion(tweets, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // There was a problem
+        completion(nil, error);
+    }];
+}
 
 
 @end
